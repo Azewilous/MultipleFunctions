@@ -1,0 +1,128 @@
+name: MultipleFunctions
+version: 1.0.6
+description: a plugin with different features.
+
+author: Azewilous
+
+main: code.aze.leaf.mp.MultipleFunctions
+
+commands:
+   mpreload:
+     description: Reloads the plugin.
+     usage: /mpreload
+   adven:
+     description: Sets your gamemode to adventure mode.
+     usage: /adven
+   surv:
+     description: Sets your gamemode to survival mode.
+     usage: /surv
+   crea:
+     description: Sets your gamemode to creative mode.
+     usage: /crea 
+   spect:
+     description: Sets your gamemode to spectator mode.
+     usage: /spect
+   find:
+     description: Teleports you to another player.
+     usage: /find
+   recover:
+     description: Recovers your health hunger and fireticks.
+     usage: /recover
+   morning: 
+     description: Sets the time to 0600.
+     usage: /morning 
+   evening:
+     description: Set the time to 18000.
+     usage: /evening 
+   thunder:
+     description: Set the weather to thunder.
+     usage: /thunder
+   stormend:
+     description: Ends any storm.
+     usage: /stormend
+   tpspawn:
+     description: Teleports player to spawn.
+     usage: /tpspawn
+   createspawn:
+     description: Creates a spawn a the players location.
+     usage: /createspawn
+   empty:
+     description: Empties a players inventory.
+     usage: /empty
+   hide:
+     description: hides/unhides a Player.
+     usage: /hide	
+   mphelp:
+     description: Displays plugin commands.
+     usage: /mphelp
+   mpversion:
+     description: Displays the plugins version.
+     usage: /mpversion
+
+permissions:
+   mp.clearinv:
+     description: Permission to clear a player inventory with a command.
+     default: false
+   mp.day:
+     description: Permission to set time to day with a command.
+     default: false
+   mp.night:
+     description: Permission to set time to night with a command.
+     default: false
+   mp.find:
+     description: Permission to teleport to a player.
+     default: false
+   mp.adventure:
+     descriptive: Permission to change gamemode to adventure mode.
+     default: false
+   mp.creative:
+     description: Permission to change gamemode to creative mode.
+     default: false
+   mp.survival:
+     description: Permission to change gamemode to survival mode.
+     default: false
+   mp.spectator:
+     description: Permission to change gamemode to spectator mode.
+     default: false
+   mp.hide: 
+     description: Permission to vanish and unvanish yourself.
+     default: false
+   mp.tpspawn: 
+     description: Permission to teleport to spawn.
+     default: true
+   mp.createspawn: 
+     description: Permission to create spawn.
+     default: false
+   mp.recover: 
+     description: Permission to recover health, hunger, and set fire-ticks.
+     default: false
+   mp.storm: 
+     description: Permission to create a storm.
+     default: false
+   mp.stormend: 
+     description: Permission to stop a storm.
+     default: false
+   mp.reload:
+     description: Permission to reload the plugin.
+     default: false
+   mp.version: 
+     description: Permission to get the plugin version.
+     default: false
+   mp.launch:
+     description: Permission To Use Jump Event.
+     default: false
+   mp.launched:
+     description: Permission To Use Jump Event(needed along with mp.launch).
+     default: false
+   mp.strike:
+     description: Permission to Use Lightning Strike with stick.
+     default: false
+   mp.weather:
+     description: Permission to set rain for 100 seconds with a snow ball.
+     default: false
+   mp.explosion:
+     description: Permission to create an explosion with flint.
+     default: false  
+   mp.settime:
+     description: Permission to change time with a blaze rod.
+     default: false
