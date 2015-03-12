@@ -22,8 +22,7 @@ public class Hidden implements Listener, CommandExecutor {
     
     private ArrayList<Player> vanished = new ArrayList<Player>();
     
-    @SuppressWarnings("deprecation")
-	public boolean onCommand(CommandSender sender, Command cmd, String commmandLabel, String args[]){
+    public boolean onCommand(CommandSender sender, Command cmd, String commmandLabel, String args[]){
     	
     	if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "Must Be A Player To Vanish");

@@ -15,7 +15,8 @@ public class  Find implements CommandExecutor {
         this.plugin = passedPlugin;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         Player player = (Player) sender;
 

@@ -1,11 +1,13 @@
 package code.aze.leaf.mp;
 
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -84,23 +86,21 @@ public class MultipleFunctions extends JavaPlugin implements Listener {
     	}
     }
 }
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteractBlock(PlayerInteractEvent event) {
 	    Player player = event.getPlayer();
 	    if(player.hasPermission("mp.strike") || player.isOp()){
 	    if (player.getItemInHand().getType() == Material.STICK) {
-	        player.getWorld().strikeLightning(player.getTargetBlock(null, 200).getLocation());
+	        player.getWorld().strikeLightning(player.getTargetBlock((Set<Material>)null, 200).getLocation());
 	    }
 	}    
   }	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteractBlock1(PlayerInteractEvent event) {
 	    Player player = event.getPlayer();
 	    if(player.hasPermission("mp.explosion") || player.isOp()){
 	    if (player.getItemInHand().getType() == Material.FLINT) {
-	        player.getWorld().createExplosion(player.getTargetBlock(null, 200).getLocation(), 10);
+	        player.getWorld().createExplosion(player.getTargetBlock((Set<Material>)null, 200).getLocation(), 10);
 	    }
 	   }
 	}
@@ -141,17 +141,17 @@ public class MultipleFunctions extends JavaPlugin implements Listener {
              }
      }
 	 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	    public void arrowEvent(ProjectileHitEvent event) {
 	        if(event.getEntity() instanceof Arrow) {
 	            Arrow arrow = (Arrow)event.getEntity();
-	            Entity shooter = arrow.getShooter();
+	            Entity shooter = (Entity) arrow.getShooter();
 	         
 	            if(shooter instanceof Player) {
 	                Player player = (Player)shooter;
 	             
 	                    player.teleport(arrow);
+	                    player.playSound(player.getLocation(), Sound.FIREWORK_BLAST2, 100, 0);
 	                }
 	            }
 	        }

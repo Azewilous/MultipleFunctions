@@ -1,6 +1,7 @@
 package code.aze.leaf.mp;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -20,7 +21,6 @@ public class GrapplingRod implements Listener {
 
 	private ArrayList<Player> cooldown = new ArrayList<Player>(), nofall = new ArrayList<Player>();
     
-    @SuppressWarnings("deprecation")
     @EventHandler
     public void onGrappleThrow(ProjectileLaunchEvent e) {
             if (!e.getEntityType().equals(EntityType.FISHING_HOOK)) return;
@@ -35,7 +35,7 @@ public class GrapplingRod implements Listener {
            
             Location target = null;
            
-            for (Block block : p.getLineOfSight(null, 100)) {
+            for (Block block : p.getLineOfSight((Set<Material>)null, 100)) {
                     if (!block.getType().equals(Material.AIR)) {
                             target = block.getLocation();
                             break;

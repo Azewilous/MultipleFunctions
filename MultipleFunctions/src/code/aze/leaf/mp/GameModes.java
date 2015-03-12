@@ -18,6 +18,7 @@ class Creative implements CommandExecutor {
 		this.plugin = passedPlugin;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 			String[] args) {
@@ -52,6 +53,7 @@ MultipleFunctions plugin;
 		this.plugin = passedPlugin;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 			String[] args) {
@@ -82,6 +84,7 @@ MultipleFunctions plugin;
 	public Adventure(MultipleFunctions passedPlugin) {
 		this.plugin = passedPlugin;
 	}
+		@SuppressWarnings("deprecation")
 		@Override
 		public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 				String[] args) {
@@ -112,6 +115,7 @@ MultipleFunctions plugin;
 public Spectator(MultipleFunctions passedPlugin) {
 	this.plugin = passedPlugin;
 }
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 			String[] args) {

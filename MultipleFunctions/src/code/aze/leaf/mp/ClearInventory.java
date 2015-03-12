@@ -14,6 +14,7 @@ public class ClearInventory implements CommandExecutor {
 	    this.plugin = passedPlugin;	
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 			String[] args) {

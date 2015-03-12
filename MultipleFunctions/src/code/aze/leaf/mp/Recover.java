@@ -14,6 +14,7 @@ MultipleFunctions plugin;
 		this.plugin = passedPlugin;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 			String[] args) {
@@ -34,7 +35,7 @@ MultipleFunctions plugin;
 				tarpl.setFireTicks(0);
 				tarpl.setExhaustion(20.0f);
 				tarpl.sendMessage(ChatColor.DARK_GREEN + "You Have Been Healed By " + player.getName());
-				player.sendMessage(ChatColor.DARK_GREEN + "You Have Successfully Heales" + args[0]);
+				player.sendMessage(ChatColor.DARK_GREEN + "You Have Successfully Healed " + args[0]);
 				} else {
 					player.sendMessage(ChatColor.RED + "The Specified Player Is Not Online");
 				}
