@@ -27,6 +27,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/*
+ * @author Azewilous
+ */
+
 public class MultipleFunctions extends JavaPlugin implements Listener {
     public final Logger Leaveslogger = Logger.getLogger("Minecraft");
     
