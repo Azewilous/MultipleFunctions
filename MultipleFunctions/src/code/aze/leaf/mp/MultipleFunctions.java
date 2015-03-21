@@ -1,5 +1,6 @@
 package code.aze.leaf.mp;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -9,6 +10,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -21,11 +23,17 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MultipleFunctions extends JavaPlugin implements Listener {
     public final Logger Leaveslogger = Logger.getLogger("Minecraft");
+    
+    FileConfiguration config;
+    File cFile;
+    
+    Plugin plugin;
     
 	@Override
 	public void onEnable(){
@@ -34,6 +42,18 @@ public class MultipleFunctions extends JavaPlugin implements Listener {
 		  getServer().getPluginManager().registerEvents(this, this);
 		  
 		  Leaveslogger.info("MultipleFunctions: An Awesome Hub Plugin For The Public");
+		  
+		  config = getConfig();
+		  config.options().copyDefaults(true);
+		  cFile = new File(getDataFolder(), "config.yml");
+		  
+		  config.addDefault("MultipleFunction.DoubleJump.Diection", 2.5);
+		  config.addDefault("MultipleFunction.DoubleJump.Velocity", 1);
+		  config.addDefault("MultipleFunction.Lightning.Material", 280);
+		  config.addDefault("MultipleFunction.Explosion.Material", 318);
+		  config.addDefault("MultipleFunction.Rain.Material", 332);
+		  config.addDefault("MultipleFunction.DayNight.Material", 369);
+		  saveConfig();
 		  
 		       this.getCommand("find").setExecutor(new Find(this));
 		       this.getCommand("crea").setExecutor(new Creative(this));
@@ -52,6 +72,7 @@ public class MultipleFunctions extends JavaPlugin implements Listener {
 		       this.getCommand("mpreload").setExecutor(new Reload(this));
 		       this.getCommand("mphelp").setExecutor(new HelpInfo(this));
 		       this.getCommand("mpversion").setExecutor(new Version(this));
+		       
 		   }
 
 	@Override
@@ -70,8 +91,9 @@ public class MultipleFunctions extends JavaPlugin implements Listener {
     	event.setCancelled(true);
     	player.setAllowFlight(false);
     	player.setFlying(false);
-    	player.setVelocity(player.getLocation().getDirection().multiply(2.5)
-    			.setY(1));
+    	player.setVelocity(player.getLocation().getDirection()
+    			.multiply(plugin.getConfig().getDouble("MultipleFunction.DoubleJump.Diection"))
+    			.setY(plugin.getConfig().getInt("MultipleFunction.DoubleJump.Velocity")));
         jumpers.add(event.getPlayer());
     }
  }
@@ -86,39 +108,47 @@ public class MultipleFunctions extends JavaPlugin implements Listener {
     	}
     }
 }
+	@SuppressWarnings("deprecation")
 	@EventHandler
-	public void onPlayerInteractBlock(PlayerInteractEvent event) {
+	public void strikeLightning(PlayerInteractEvent event) {
 	    Player player = event.getPlayer();
 	    if(player.hasPermission("mp.strike") || player.isOp()){
-	    if (player.getItemInHand().getType() == Material.STICK) {
+	    if (player.getItemInHand().getType().getId() 
+	    		== plugin.getConfig().getInt("MultipleFunction.Lightning.Material")) {
 	        player.getWorld().strikeLightning(player.getTargetBlock((Set<Material>)null, 200).getLocation());
 	    }
 	}    
   }	
+	@SuppressWarnings("deprecation")
 	@EventHandler
-	public void onPlayerInteractBlock1(PlayerInteractEvent event) {
+	public void createExplosion(PlayerInteractEvent event) {
 	    Player player = event.getPlayer();
 	    if(player.hasPermission("mp.explosion") || player.isOp()){
-	    if (player.getItemInHand().getType() == Material.FLINT) {
+	    if (player.getItemInHand().getType().getId() 
+	    		== plugin.getConfig().getInt("MultipleFunction.Explosion.Material")) {
 	        player.getWorld().createExplosion(player.getTargetBlock((Set<Material>)null, 200).getLocation(), 10);
 	    }
 	   }
 	}
-    @EventHandler
-    public void onPlayerInteractBlock2(PlayerInteractEvent event){
+    @SuppressWarnings("deprecation")
+	@EventHandler
+    public void startRain(PlayerInteractEvent event){
     	Player player = event.getPlayer();
     	if(player.hasPermission("mp.weather") || player.isOp()){
-    	if(player.getItemInHand().getType() == Material.SNOW_BALL){
+    	if(player.getItemInHand().getType().getId() 
+    			== plugin.getConfig().getInt("MultipleFunction.Rain.Material")){
     		player.getWorld().setWeatherDuration(100);
     	}
     }
   }
-    @EventHandler
-    public void onPlayerInteractBlock3(PlayerInteractEvent event){
+    @SuppressWarnings("deprecation")
+	@EventHandler
+    public void changeTime(PlayerInteractEvent event){
     	Player player = event.getPlayer();
 		World world = player.getWorld();
 		if(player.hasPermission("mp.settime") || player.isOp()){
-    	if(player.getItemInHand().getType() == Material.BLAZE_ROD){
+    	if(player.getItemInHand().getType().getId() 
+    			== plugin.getConfig().getInt("MultipleFunction.DayNight.Material")){
     	    if (event.getAction() == Action.LEFT_CLICK_AIR){
     		     world.setTime(0);
     		     player.sendMessage(ChatColor.YELLOW + "Time Set To Day");
