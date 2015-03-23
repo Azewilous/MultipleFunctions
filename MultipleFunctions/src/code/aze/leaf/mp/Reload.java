@@ -22,6 +22,7 @@ MultipleFunctions plugin;
             return false;
         }
         if (sender instanceof Player) {
+        		plugin.reloadConfig();
                 plugin.getPluginLoader().disablePlugin(plugin);
                 plugin.getPluginLoader().enablePlugin(plugin);
                 sender.sendMessage(ChatColor.YELLOW + "Reloaded "+ ChatColor.GRAY + plugin.getDescription().getFullName());

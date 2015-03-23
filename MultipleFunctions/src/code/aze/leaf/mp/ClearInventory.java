@@ -19,7 +19,7 @@ public class ClearInventory implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 			String[] args) {
         Player player = (Player) sender;
-        if(!player.hasPermission("mp.clearinv") || player.isOp()){
+        if(!player.hasPermission("mp.clearinv") || !player.isOp()){
            player.sendMessage(ChatColor.RED + "You Need The Permission Node " + ChatColor.AQUA + "mp.clearinv "
                    + ChatColor.RED + "To Execute This Command");
         }
